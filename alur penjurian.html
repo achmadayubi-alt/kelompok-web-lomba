@@ -5,6 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alur Penjurian IT Fest 6.0</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Style pendukung untuk Form Penilaian */
+        .form-penilaian {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+        .team-card-form {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #123c69;
+            border-radius: 8px;
+            padding: 16px;
+        }
+        .team-card-form h4 {
+            color: #123c69;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .input-group label {
+            font-size: 13px;
+            font-weight: bold;
+            color: #546e7a;
+        }
+        .input-group input {
+            padding: 8px 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 14px;
+            width: 100%;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #247ba0;
+            box-shadow: 0 0 0 2px rgba(36, 123, 160, 0.2);
+        }
+        .score-preview {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #123c69;
+            text-align: right;
+            font-size: 14px;
+        }
+        .btn-hitung {
+            background-color: #123c69;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        .btn-hitung:hover {
+            background-color: #247ba0;
+        }
+    </style>
 </head>
 <body>
 
@@ -59,6 +129,80 @@
             <tr><th>Total</th><th>100%</th></tr>
         </table>
 
+        <h3>Form Input Penilaian Tim</h3>
+        <form id="formPenilaian" class="form-penilaian" onsubmit="event.preventDefault(); hitungDanUpdateRanking();">
+            <!-- Tim Alpha -->
+            <div class="team-card-form">
+                <h4>Tim Alpha</h4>
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Orisinalitas (25%)</label>
+                        <input type="number" class="alpha-ori" min="0" max="100" value="95" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Inovasi (25%)</label>
+                        <input type="number" class="alpha-ino" min="0" max="100" value="90" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Kesesuaian Tema (20%)</label>
+                        <input type="number" class="alpha-tema" min="0" max="100" value="90" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Kualitas (30%)</label>
+                        <input type="number" class="alpha-kua" min="0" max="100" value="95" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tim Beta -->
+            <div class="team-card-form">
+                <h4>Tim Beta</h4>
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Orisinalitas (25%)</label>
+                        <input type="number" class="beta-ori" min="0" max="100" value="85" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Inovasi (25%)</label>
+                        <input type="number" class="beta-ino" min="0" max="100" value="90" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Kesesuaian Tema (20%)</label>
+                        <input type="number" class="beta-tema" min="0" max="100" value="85" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Kualitas (30%)</label>
+                        <input type="number" class="beta-kua" min="0" max="100" value="95" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tim Gamma -->
+            <div class="team-card-form">
+                <h4>Tim Gamma</h4>
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Orisinalitas (25%)</label>
+                        <input type="number" class="gamma-ori" min="0" max="100" value="80" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Inovasi (25%)</label>
+                        <input type="number" class="gamma-ino" min="0" max="100" value="85" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Kesesuaian Tema (20%)</label>
+                        <input type="number" class="gamma-tema" min="0" max="100" value="88" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Kualitas (30%)</label>
+                        <input type="number" class="gamma-kua" min="0" max="100" value="88" required>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-hitung">Simpan & Hitung Ranking</button>
+        </form>
+
         <h3>Panduan untuk Juri</h3>
         <div class="panduan">
             <p><b>90–100:</b> Sangat baik, memenuhi kriteria dengan sangat kuat.</p>
@@ -72,17 +216,75 @@
 
     <section id="ranking">
         <h2>3. Urutan Pemenang / Ranking</h2>
-        <table>
-            <tr><th>Ranking</th><th>Tim</th><th>Nilai</th></tr>
-            <tr><td>1</td><td>Tim Alpha</td><td>92,50</td></tr>
-            <tr><td>2</td><td>Tim Beta</td><td>88,75</td></tr>
-            <tr><td>3</td><td>Tim Gamma</td><td>85,25</td></tr>
+        <table id="tabelRanking">
+            <thead>
+                <tr><th>Ranking</th><th>Tim</th><th>Nilai Akhir</th></tr>
+            </thead>
+            <tbody>
+                <!-- Data ranking dinamis akan diperbarui melalui JavaScript -->
+            </tbody>
         </table>
         <p>Urutan pemenang ditentukan dari nilai tertinggi. Jika nilai sama, gunakan aturan pemecah seri resmi.</p>
     </section>
 </main>
 
 <footer>IT Fest 6.0 © 2026</footer>
+
+<script>
+    function hitungNilai(ori, ino, tema, kua) {
+        return (ori * 0.25) + (ino * 0.25) + (tema * 0.20) + (kua * 0.30);
+    }
+
+    function hitungDanUpdateRanking() {
+        // Ambil nilai Tim Alpha
+        const alphaOri = parseFloat(document.querySelector('.alpha-ori').value) || 0;
+        const alphaIno = parseFloat(document.querySelector('.alpha-ino').value) || 0;
+        const alphaTema = parseFloat(document.querySelector('.alpha-tema').value) || 0;
+        const alphaKua = parseFloat(document.querySelector('.alpha-kua').value) || 0;
+        const nilaiAlpha = hitungNilai(alphaOri, alphaIno, alphaTema, alphaKua);
+
+        // Ambil nilai Tim Beta
+        const betaOri = parseFloat(document.querySelector('.beta-ori').value) || 0;
+        const betaIno = parseFloat(document.querySelector('.beta-ino').value) || 0;
+        const betaTema = parseFloat(document.querySelector('.beta-tema').value) || 0;
+        const betaKua = parseFloat(document.querySelector('.beta-kua').value) || 0;
+        const nilaiBeta = hitungNilai(betaOri, betaIno, betaTema, betaKua);
+
+        // Ambil nilai Tim Gamma
+        const gammaOri = parseFloat(document.querySelector('.gamma-ori').value) || 0;
+        const gammaIno = parseFloat(document.querySelector('.gamma-ino').value) || 0;
+        const gammaTema = parseFloat(document.querySelector('.gamma-tema').value) || 0;
+        const gammaKua = parseFloat(document.querySelector('.gamma-kua').value) || 0;
+        const nilaiGamma = hitungNilai(gammaOri, gammaIno, gammaTema, gammaKua);
+
+        // Buat list tim
+        const dataTim = [
+            { nama: 'Tim Alpha', nilai: nilaiAlpha },
+            { nama: 'Tim Beta', nilai: nilaiBeta },
+            { nama: 'Tim Gamma', nilai: nilaiGamma }
+        ];
+
+        // Urutkan berdasarkan nilai tertinggi
+        dataTim.sort((a, b) => b.nilai - a.nilai);
+
+        // Render ke tabel ranking
+        const tbody = document.querySelector('#tabelRanking tbody');
+        tbody.innerHTML = '';
+
+        dataTim.forEach((tim, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${tim.nama}</td>
+                <td>${tim.nilai.toFixed(2).replace('.', ',')}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    // Jalankan perhitungan awal saat halaman pertama kali dibuka
+    window.onload = hitungDanUpdateRanking;
+</script>
 
 </body>
 </html>
