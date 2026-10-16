@@ -1,6 +1,5 @@
 
-/* PENGATURAN DASAR */
-* {
+{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -29,7 +28,6 @@ body {
     padding: 35px 5%;
 }
 
-/* HEADER */
 .header {
     background: rgba(255, 255, 255, 0.97);
     border: 1px solid white;
@@ -73,7 +71,6 @@ body {
     max-width: 600px;
 }
 
-/* TOMBOL */
 .btn {
     display: inline-block;
     text-decoration: none;
@@ -117,7 +114,6 @@ body {
     border-color: var(--line);
 }
 
-/* KARTU STATISTIK */
 .statistics {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -183,7 +179,6 @@ body {
     background: #a1c94c;
 }
 
-/* LAYOUT UTAMA */
 .content {
     display: grid;
     grid-template-columns: minmax(0, 1.8fr) minmax(270px, 0.9fr);
@@ -230,7 +225,6 @@ body {
     white-space: nowrap;
 }
 
-/* DAFTAR EVENT */
 .event-list {
     padding: 16px;
 }
@@ -321,7 +315,6 @@ body {
     font-size: 10px;
 }
 
-/* SIDEBAR */
 .sidebar {
     display: flex;
     flex-direction: column;
@@ -394,7 +387,6 @@ body {
     white-space: nowrap;
 }
 
-/* AKSI CEPAT */
 .quick-panel {
     padding: 20px;
 }
@@ -414,7 +406,6 @@ body {
     margin-bottom: 0;
 }
 
-/* FOOTER */
 footer {
     text-align: center;
     color: white;
@@ -422,7 +413,6 @@ footer {
     padding: 30px 0 5px;
 }
 
-/* RESPONSIVE */
 @media (max-width: 1000px) {
     .content {
         grid-template-columns: 1fr;
